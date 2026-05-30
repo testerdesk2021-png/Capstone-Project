@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name ="AutomationSuite">
+
+    <test name ="Automation">
+
+        <classes>
+            <class name="testcases.SearchProductTest"/>
+            <class name="testcases.AddToCartTest"/>
+            <class name="testcases.AddMultipleProductsTest"/>
+            <class name="testcases.PlaceOrderTest"/>
+            <class name="testcases.NavigationTest"/>
+            <class name="testcases.ProductCountTest"/>
+
+
+        </classes>
+    </test>
+</suite>
