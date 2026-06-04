@@ -6,40 +6,37 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import utils.WaitUtils;
 import java.time.Duration;
-
 
 public class CheckoutPage {
 
     WebDriver driver;
-    WebDriverWait wait;
-    //locators
+    WaitUtils wait;
+
     By countryDropdown = By.cssSelector("select");
     By agreeCheckbox = By.cssSelector(".chkAgree");
     By proceedBtn = By.xpath("//button[contains(text(),'Proceed')]");
 
     public CheckoutPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WaitUtils(driver, 10);
     }
-    //select india from dropdown
+    //select India from dropdown
     public void selectCountry(String countryName) {
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(countryDropdown));
-        //create select object
-        Select select = new Select(driver.findElement(By.cssSelector("select")));
-        //select India
-        select.selectByVisibleText(countryName);
+        Select select = new Select(driver.findElement(countryDropdown));//create select object
+        wait.waitForVisibility(countryDropdown).click();//wait for dropdown to be visible and click to open
+        select.selectByVisibleText(countryName);//select India
 
     }
     //Agree terms
     public void agreeTerms() {
-        wait.until(ExpectedConditions.elementToBeClickable(agreeCheckbox)).click();
+        wait.waitForClickable(agreeCheckbox).click();
     }
     //click proceed
     public void clickProceed() {
-        wait.until(ExpectedConditions.elementToBeClickable(proceedBtn)).click();
+        wait.waitForClickable(proceedBtn).click();
     }
 }
 

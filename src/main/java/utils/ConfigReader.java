@@ -1,15 +1,30 @@
 package utils;
 
 
-//utility class to store configuaration
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+
 public class ConfigReader {
 
-    public static String getUrl() {
+    private Properties prop;
 
-
-        return "https://rahulshettyacademy.com/seleniumPractise/#/";
+    public ConfigReader() {
+        prop = new Properties();
+        try {
+            FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "/src/main/resources/config.properties");
+            prop.load(fis);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load config.properties file: " + e);
+        }
     }
 
+    public String getBrowser() {
+        return prop.getProperty("browser");
+    }
 
+    public String getUrl() {
+        return prop.getProperty("url");
+    }
 
 }

@@ -26,6 +26,8 @@ This project is a Selenium - java  based Automation Framework using Maven and Te
 │   │   │   │   └── WaitUtils.java
 │   │   │   └── |--ScreenshotUtil.java
 │
+│   │   │   ├── resources
+│   │   │   │   └── config.properties
 │
 │   ├── test
 │   │   ├── java

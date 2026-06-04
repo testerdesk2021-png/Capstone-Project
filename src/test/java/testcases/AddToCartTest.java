@@ -17,13 +17,10 @@ public class AddToCartTest extends BaseTest {
 
     @Test
     public void addToCartTest() {
-        //create home page object
-        HomePage home = new HomePage(driver);
+
         String product = "Beetroot";
         home.addProductByName(product);
         home.openCart();
-
-        CartPage cart = new CartPage(driver);
 
         //validate product is visible in cart
         List<String> cartItems = cart.getCartProductNames();

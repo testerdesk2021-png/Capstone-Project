@@ -12,14 +12,12 @@ public class AddMultipleProductsTest extends BaseTest {
     @Test
     public void addMultipleProductsTest() {
 
-        HomePage home = new HomePage(driver);
         String[] products = {"Beetroot", "Tomato"};
         home.addMultipleProducts(products);
         home.openCart();
-        CartPage cart = new CartPage(driver);
         cart.clickCheckout();
 
-        //validation :to get All products names from checkout table, store in List
+        //1.validation :to get All products names from checkout table, store in List
         List<String> cartItems = cart.getCheckoutProductNames();
         for (String product : products) {
             String expected = product.toLowerCase().trim();
@@ -35,12 +33,10 @@ public class AddMultipleProductsTest extends BaseTest {
         }
         System.out.println("All products present in cart");
 
-        //price validation :get all product prices from checkout table and store in list
+        //2.price validation :get all product prices from checkout table and store in list
         List<Integer> prices = cart.getProductPrices();
-        //add all product prices and stores as a expected total
-        int expectedTotal = prices.stream().mapToInt(Integer::intValue).sum();
-        //get total amount displayed on UI
-        int actualTotal = cart.getTotalAmount();
+        int expectedTotal = prices.stream().mapToInt(Integer::intValue).sum();//add all product prices and stores as a expected total
+        int actualTotal = cart.getTotalAmount(); //get total amount displayed on UI
         System.out.println("Expected Total:" + expectedTotal);
         System.out.println("Actual Total: " +actualTotal);
         Assert.assertEquals(actualTotal,expectedTotal,"Total price mismatch");
